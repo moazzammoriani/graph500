@@ -23,4 +23,4 @@ let () =
   let edges = GenerateSeq.go ~scale ~edge_factor in
   let t1 = Unix.gettimeofday () in
   Printf.printf "Generated. Time: %f s.\n" (t1 -. t0);
-  GenerateSeq.to_file ~filename:!filename edges;
+  FileHandler.to_file ~filename:!filename edges;

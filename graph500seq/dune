@@ -8,15 +8,26 @@
 ;;;;; Newer implementations ;;;;;
 
 (library
+  (name graphTypes)
+  (modules graphTypes)
+  (modules_without_implementation graphTypes)
+)
+
+(library
   (name generateSeq)
   (modules generateSeq)
-  (libraries graphTypes)
+  (libraries graphTypes fileHandler)
+)
+
+(library
+  (name fileHandler)
+  (modules fileHandler)
 )
 
 (executable
   (name gen)
   (modules gen)
-  (libraries unix generateSeq)
+  (libraries unix generateSeq fileHandler)
 )
 
 (library
@@ -34,11 +45,12 @@
 (executable
   (name kernel1Seq_run)
   (modules kernel1Seq_run)
-  (libraries graphTypes generateSeq kernel1Seq unix)
+  (modes byte exe)
+  (libraries sparseGraphSeq graphTypes fileHandler kernel1Seq unix)
 )
 
-(alias
-  (name buildbench)
-  (deps kronecker.exe kernel2.exe kernel3.exe
-        gen.exe kernel1Seq_run.exe)
-)
+;(alias
+;  (name buildbench)
+;  (deps kronecker.exe kernel2.exe kernel3.exe
+;        gen.exe kernel1Seq_run.exe)
+;)
