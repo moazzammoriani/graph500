@@ -22,5 +22,7 @@ val graph : t
 
 val graph2 : t
 
+val print_sparse_graph: t -> unit
+
 (** Return a random vertex from the graph of degree at least 1. *)
 val sample_vertex : t -> vertex

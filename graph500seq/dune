@@ -58,13 +58,19 @@
 )
 
 (executable
-  (name testk2)
-  (modules testk2)
+  (name print_sparse)
+  (modules print_sparse)
   (modes byte exe)
-  (libraries kernel2Seq sparseGraphSeq graphTypes fileHandler kernel1Seq unix)
+  (libraries sparseGraphSeq graphTypes fileHandler kernel1Seq unix)
   (ocamlc_flags -g)
 )
 
+(executable
+  (name kernel1Seq_run)
+  (modules kernel1Seq_run)
+  (libraries sparseGraphSeq graphTypes fileHandler kernel1Seq unix)
+  (ocamlc_flags -g)
+)
 ;(alias
 ;  (name buildbench)
 ;  (deps kronecker.exe kernel2.exe kernel3.exe

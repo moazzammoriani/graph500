@@ -36,6 +36,19 @@ let rec sample_vertex g =
   let outgoing = g.(v) in
   if outgoing <> [] then v else sample_vertex g
 
+let print_edgelist el = 
+    let rec aux str el = 
+        match el with 
+        | [] -> str ^ "NULL"
+        | _ -> aux (str ^ (List.hd el |> fst |> string_of_int) ^ "->") (List.tl el)
+    in 
+    aux "" el
+
+let print_sparse_graph g =
+    for i = 0 to (Array.length g) -1 do
+        print_endline ((string_of_int i) ^ ": " ^ (print_edgelist g.(i)));
+    done
+
 let gr = [|
     [1;3];
     [0];
