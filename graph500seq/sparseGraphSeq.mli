@@ -12,5 +12,15 @@ val from : vertex -> t -> (vertex * weight) list
 
 val max_vertex_label : t -> vertex
 
+val num_vertices : t -> int
+
+val get_next_edgenode : t -> vertex -> vertex
+
+val has_no_edgenodes : t -> vertex -> bool
+
+val graph : t
+
+val graph2 : t
+
 (** Return a random vertex from the graph of degree at least 1. *)
 val sample_vertex : t -> vertex

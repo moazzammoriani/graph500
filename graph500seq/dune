@@ -11,42 +11,58 @@
   (name graphTypes)
   (modules graphTypes)
   (modules_without_implementation graphTypes)
+  (ocamlc_flags -g)
 )
 
 (library
   (name generateSeq)
   (modules generateSeq)
   (libraries graphTypes fileHandler)
+  (ocamlc_flags -g)
 )
 
 (library
   (name fileHandler)
   (modules fileHandler)
+  (ocamlc_flags -g)
 )
 
 (executable
   (name gen)
   (modules gen)
   (libraries unix generateSeq fileHandler)
+  (ocamlc_flags -g)
 )
 
 (library
   (name sparseGraphSeq)
   (modules sparseGraphSeq)
   (libraries graphTypes)
+  (ocamlc_flags -g)
 )
 
 (library
   (name kernel1Seq)
   (modules kernel1Seq)
   (libraries generateSeq sparseGraphSeq unix)
+  (ocamlc_flags -g)
+)
+
+(library
+  (name kernel2Seq)
+  (modules kernel2Seq)
+  (libraries generateSeq sparseGraphSeq unix)
+  (preprocess (pps ppx_inline_test ppx_assert))
+  (inline_tests)
+  (ocamlc_flags -g)
 )
 
 (executable
-  (name kernel1Seq_run)
-  (modules kernel1Seq_run)
+  (name testk2)
+  (modules testk2)
   (modes byte exe)
-  (libraries sparseGraphSeq graphTypes fileHandler kernel1Seq unix)
+  (libraries kernel2Seq sparseGraphSeq graphTypes fileHandler kernel1Seq unix)
+  (ocamlc_flags -g)
 )
 
 ;(alias

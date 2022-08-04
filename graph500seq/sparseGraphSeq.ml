@@ -16,7 +16,59 @@ let add_edge (s,e,w) g =
 let from s g =
   g.(s)
 
+let num_vertices g = 
+    Array.length g
+
+(* Takes a sparse graph g and a vertex v and returns the next edgenode 
+   res in the edgenode list of v and changes the state of g with res removed
+   from the edgenode list of v. *)
+let get_next_edgenode g v =
+    let res = List.hd g.(v) |> fst in
+    let rest_edgelist = List.tl g.(v) in
+    g.(v) <- rest_edgelist;
+    res
+
+let has_no_edgenodes g v = 
+    g.(v) = []
+
 let rec sample_vertex g =
   let v = Random.int (Array.length g) in
   let outgoing = g.(v) in
   if outgoing <> [] then v else sample_vertex g
+
+let gr = [|
+    [1;3];
+    [0];
+    [3;4];
+    [0;2];
+    [2]
+|]
+
+let gr2 = [|
+    [];
+    [2;3;7;4;8];
+    [1;6];
+    [1;7];
+    [1];
+    [6];
+    [2;5;8];
+    [1;3];
+    [1;6];
+|]
+
+
+let graph = 
+    Array.map 
+        (fun x -> 
+            List.map (fun y -> (y, 0.)) x
+        ) 
+    gr
+
+let graph2 = 
+    Array.map 
+        (fun x -> 
+            List.map (fun y -> (y, 0.)) x
+        ) 
+    gr2
+
+
