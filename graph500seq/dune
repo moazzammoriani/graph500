@@ -66,6 +66,14 @@
 )
 
 (executable
+  (name getEdges)
+  (modules getEdges)
+  (modes byte exe)
+  (libraries fileHandler unix)
+  (ocamlc_flags -g)
+)
+
+(executable
   (name kernel1Seq_run)
   (modules kernel1Seq_run)
   (libraries sparseGraphSeq graphTypes fileHandler kernel1Seq unix)
