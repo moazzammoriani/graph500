@@ -10,7 +10,7 @@ let get_bool_vect_val_at_index d_arr v =
 let is_discovered d_arr v = 
     get_bool_vect_val_at_index d_arr v
 
-let next_edgenode = SparseGraphSeq.get_next_edgenode
+let next_edgenode g v = SparseGraphSeq.get_vertex @@ SparseGraphSeq.get_next_edgenode g v 
 
 let has_no_edgenodes = SparseGraphSeq.has_no_edgenodes
 
@@ -37,11 +37,10 @@ let bfs g start =
     let nvertices = SparseGraphSeq.num_vertices g in
     let parent_arr = Array.init nvertices (fun _ -> -1) in
     let discovery_arr = Array.init nvertices (fun _ -> false) in
-    let gcopy = Array.copy g in
     let q = ref (Queue.create ()) in
     Queue.push start !q;
     update_discovered discovery_arr start;
-    breadthfirstsearch gcopy parent_arr discovery_arr !q
+    breadthfirstsearch g parent_arr discovery_arr !q
 
 let kernel2 = bfs
 

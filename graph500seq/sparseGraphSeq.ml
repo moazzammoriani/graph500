@@ -1,5 +1,6 @@
 open GraphTypes
 
+
 type t = (vertex * weight) list array
 
 let create ~max_vertex_label =
@@ -23,13 +24,17 @@ let num_vertices g =
    res in the edgenode list of v and changes the state of g with res removed
    from the edgenode list of v. *)
 let get_next_edgenode g v =
-    let res = List.hd g.(v) |> fst in
+    let res = List.hd g.(v) in
     let rest_edgelist = List.tl g.(v) in
     g.(v) <- rest_edgelist;
     res
 
 let has_no_edgenodes g v = 
     g.(v) = []
+
+let get_vertex edgenode = fst edgenode
+
+let get_weight edgenode = snd edgenode
 
 let rec sample_vertex g =
   let v = Random.int (Array.length g) in
@@ -48,6 +53,8 @@ let print_sparse_graph g =
     for i = 0 to (Array.length g) -1 do
         print_endline ((string_of_int i) ^ ": " ^ (print_edgelist g.(i)));
     done
+
+let print_vertex v = print_int v
 
 let gr = [|
     [1;3];
@@ -83,5 +90,26 @@ let graph2 =
             List.map (fun y -> (y, 0.)) x
         ) 
     gr2
+
+
+let graph3 = [|
+    [(1, 3.); (2, 1.)];
+    [(0, 3.); (2, 7.); (4, 1.); (3, 5.)];
+    [(1, 7.); (0, 1.); (3, 2.)];
+    [(2, 2.); (1, 5.); (4, 7.)];
+    [(1, 1.); (3,7.)]
+|]
+
+
+let graph4 = [|
+    [(1, 3.); (2, 1.)];
+    [(0, 3.); (2, 7.); (4, 1.); (3, 5.)];
+    [(1, 7.); (0, 1.); (3, 2.)];
+    [(2, 2.); (1, 5.); (4, 7.)];
+    [(1, 1.); (3, 7.)];
+    [(6, 5.); (7, 3.)];
+    [(5, 5.); (7, 1.)];
+    [(5, 3.); (6, 1.)];
+|]
 
 
