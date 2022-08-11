@@ -90,6 +90,14 @@
   (ocamlc_flags -g)
 )
 
+(executable
+  (name kernel3Seq_run)
+  (modules kernel3Seq_run)
+  (modes byte exe)
+  (libraries sparseGraphSeq graphTypes fileHandler kernel3Seq unix)
+  (ocamlc_flags -g)
+)
+
 ;(alias
 ;  (name buildbench)
 ;  (deps kronecker.exe kernel2.exe kernel3.exe
