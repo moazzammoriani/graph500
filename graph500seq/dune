@@ -1,11 +1,3 @@
-; kernel1 and kronecker have been replaced with new, more optimized
-; implementations.
-(executable (name kronecker) (modules kronecker))
-(library (name kernel1Old) (modules kernel1Old))
-(executable (name kernel2) (modules kernel2) (libraries kernel1Old))
-(executable (name kernel3) (modules kernel3) (libraries kernel1Old))
-
-;;;;; Newer implementations ;;;;;
 
 (library
   (name graphTypes)
@@ -38,6 +30,8 @@
   (name sparseGraphSeq)
   (modules sparseGraphSeq)
   (libraries graphTypes)
+  (preprocess (pps ppx_inline_test ppx_assert))
+  (inline_tests)
   (ocamlc_flags -g)
 )
 
@@ -67,6 +61,13 @@
 )
 
 (executable
+  (name sampleSearchKeys)
+  (modules sampleSearchKeys)
+  (libraries graphTypes generateSeq sparseGraphSeq unix)
+  (ocamlc_flags -g)
+)
+
+(executable
   (name print_sparse)
   (modules print_sparse)
   (modes byte exe)
@@ -80,6 +81,8 @@
   (libraries sparseGraphSeq graphTypes fileHandler kernel1Seq unix)
   (ocamlc_flags -g)
 )
+
+
 ;(alias
 ;  (name buildbench)
 ;  (deps kronecker.exe kernel2.exe kernel3.exe

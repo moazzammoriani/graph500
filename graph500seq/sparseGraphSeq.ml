@@ -36,10 +36,24 @@ let get_vertex edgenode = fst edgenode
 
 let get_weight edgenode = snd edgenode
 
-let rec sample_vertex g =
-  let v = Random.int (Array.length g) in
-  let outgoing = g.(v) in
-  if outgoing <> [] then v else sample_vertex g
+let rec has_selfloop v edgelist = 
+    match (edgelist = []) with
+    | true -> false
+    | false -> begin
+        let edgenode = List.hd edgelist in
+        let rest = List.tl edgelist in
+        match (get_vertex @@ edgenode = v) with
+        | true -> true
+        | false -> has_selfloop v rest
+    end
+
+let sample_vertex g =
+        let v = Random.int (Array.length g) in
+        let outgoing = g.(v) in
+        if (outgoing <> []) && (not @@ has_selfloop v g.(v)) then 
+            v 
+        else 
+            v
 
 let print_edgelist el = 
     let rec aux str el = 
@@ -76,7 +90,6 @@ let gr2 = [|
     [1;6];
 |]
 
-
 let graph = 
     Array.map 
         (fun x -> 
@@ -91,7 +104,6 @@ let graph2 =
         ) 
     gr2
 
-
 let graph3 = [|
     [(1, 3.); (2, 1.)];
     [(0, 3.); (2, 7.); (4, 1.); (3, 5.)];
@@ -100,16 +112,27 @@ let graph3 = [|
     [(1, 1.); (3,7.)]
 |]
 
-
 let graph4 = [|
-    [(1, 3.); (2, 1.)];
-    [(0, 3.); (2, 7.); (4, 1.); (3, 5.)];
-    [(1, 7.); (0, 1.); (3, 2.)];
-    [(2, 2.); (1, 5.); (4, 7.)];
-    [(1, 1.); (3, 7.)];
-    [(6, 5.); (7, 3.)];
-    [(5, 5.); (7, 1.)];
-    [(5, 3.); (6, 1.)];
+    [(1, 5.); (2, 3.)];
+    [(0, 5.); (2, 1.)];
+    [(0, 3.); (1, 1.)];
 |]
+
+(*let graph5 = [|
+    [(0, 3.); (2, 1.)];
+    [(1, 3.); (2, 7.); (4, 1.); (3, 5.)];
+    [(2, 7.); (0, 1.); (3, 2.)];
+    [(3, 2.); (1, 5.); (4, 7.)];
+    [(4, 1.); (3, 7.)]
+|]*)
+
+
+open Base
+let%test_unit "has_selfloop_1" =
+    [%test_eq: bool] (has_selfloop 2 [(1, 0.); (2, 0.)]) true 
+
+let%test_unit "has_selfloop_2" = 
+    [%test_eq: bool] (has_selfloop 3 [(0, 3.); (2, 7.); (4, 1.); (3, 5.)]) true
+
 
 
