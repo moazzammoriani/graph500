@@ -82,6 +82,13 @@
   (ocamlc_flags -g)
 )
 
+(executable
+  (name kernel2Seq_run)
+  (modules kernel2Seq_run)
+  (modes byte exe)
+  (libraries sparseGraphSeq graphTypes fileHandler kernel2Seq unix)
+  (ocamlc_flags -g)
+)
 
 ;(alias
 ;  (name buildbench)

@@ -19,7 +19,6 @@ let extract_samples n candidates =
         | 0 -> xs 
         | _ -> begin 
             let sample = Random.full_int (List.length cands) in
-            Printf.printf "sample = %d\n" sample;
             aux (count-1) (List.filter (fun x -> if x = sample then false else true) cands) ((List.nth cands sample)::xs)
         end
     in
