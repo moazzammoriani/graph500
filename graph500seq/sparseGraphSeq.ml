@@ -127,7 +127,7 @@ let graph4 = [|
 |]*)
 
 
-open Base
+(*open Base
 let%test_unit "has_selfloop_1" =
     [%test_eq: bool] (has_selfloop 2 [(1, 0.); (2, 0.)]) true 
 
@@ -135,4 +135,4 @@ let%test_unit "has_selfloop_2" =
     [%test_eq: bool] (has_selfloop 3 [(0, 3.); (2, 7.); (4, 1.); (3, 5.)]) true
 
 
-
+*)

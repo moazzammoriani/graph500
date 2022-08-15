@@ -44,10 +44,11 @@ let bfs g start =
 
 let kernel2 = bfs
 
+
+
+(*
 (* Unit tests *)
 let parray = Array.init 64 (fun _ -> -1)
-
-
 
 open Base
 let%test_unit "rev" = 
@@ -70,4 +71,4 @@ let%test_unit "kernel2_2" =
     [%test_eq: int array] (kernel2 SparseGraphSeq.graph2 8) [|-1;8;1;1;1;6;8;1;-1|]
 
 
-
+*)

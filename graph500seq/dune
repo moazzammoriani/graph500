@@ -30,8 +30,8 @@
   (name sparseGraphSeq)
   (modules sparseGraphSeq)
   (libraries graphTypes)
-  (preprocess (pps ppx_inline_test ppx_assert))
-  (inline_tests)
+  ;(preprocess; (pps ppx_inline_test ppx_assert))
+  ;(inline_tests)
   (ocamlc_flags -g)
 )
 
@@ -46,8 +46,8 @@
   (name kernel2Seq)
   (modules kernel2Seq)
   (libraries generateSeq sparseGraphSeq unix)
-  (preprocess (pps ppx_inline_test ppx_assert))
-  (inline_tests)
+  ;(preprocess; (pps ppx_inline_test ppx_assert))
+  ;(inline_tests)
   (ocamlc_flags -g)
 )
 
@@ -55,8 +55,8 @@
   (name kernel3Seq)
   (modules kernel3Seq)
   (libraries graphTypes generateSeq sparseGraphSeq unix)
-  (preprocess (pps ppx_inline_test ppx_assert))
-  (inline_tests)
+  ;(preprocess; (pps ppx_inline_test ppx_assert))
+  ;(inline_tests)
   (ocamlc_flags -g)
 )
 
@@ -87,6 +87,14 @@
   (modules kernel2Seq_run)
   (modes byte exe)
   (libraries sparseGraphSeq graphTypes fileHandler kernel2Seq unix)
+  (ocamlc_flags -g)
+)
+
+(executable
+  (name kernel2Par_run)
+  (modules kernel2Par_run)
+  (modes byte exe)
+  (libraries domainslib sparseGraphSeq graphTypes fileHandler kernel2Seq unix)
   (ocamlc_flags -g)
 )
 
