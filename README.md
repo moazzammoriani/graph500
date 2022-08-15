@@ -4,7 +4,6 @@ We can now output the sparse graph produced by kernel 1 to a file. To do so we u
 
 ```
 $ kernel1Seq_run.exe edges.data -o sparse.data 
-
 ```
 # Kernel 2 and 3 
 
@@ -16,7 +15,6 @@ Kernel 2 and kernel 3 both require a list of sample vertices on which they have 
 
 ```
 $ sampleSearchKeys.exe sparse.data -o samples.data
-
 ```
 ## Running the kernel 2 and 3
 
@@ -24,12 +22,11 @@ The order of the input files fed into the executables matters. The following com
 
 ```
 $ kernel2Seq_run.exe sparse.data samples.data 
-
 ```
 
 Kernel 3's executable is used exactly the same wasy as kernel 2's executable.
 
-*Note:* The output flag is important in kernel 1 because the sparse graph representation in `sparse.data` has to be fed into kernel 2 and kernel 3. The outputs of kernel 2 and kernel 3 don't need to be used for now so their executables do not have an optional output flag. 
+_Note:_ The output flag is important in kernel 1 because the sparse graph representation in `sparse.data` has to be fed into kernel 2 and kernel 3. The outputs of kernel 2 and kernel 3 don't need to be used for now so their executables do not have an optional output flag. 
 
 
 
