@@ -44,31 +44,3 @@ let bfs g start =
 
 let kernel2 = bfs
 
-
-
-(*
-(* Unit tests *)
-let parray = Array.init 64 (fun _ -> -1)
-
-open Base
-let%test_unit "rev" = 
-    [%test_eq: int list] [ 3; 2; 1 ] [ 3; 2; 1 ]
-
-let%test_unit "update_discovered" = 
-    let bvect = [| false; false; false |] in
-    update_discovered bvect 0;
-    [%test_eq: bool] bvect.(0) true
-
-
-let%test_unit "set_parent" = 
-    set_parent parray ~parent:8 ~child:2;
-    [%test_eq: int] parray.(2) 8
-
-let%test_unit "kernel2" = 
-    [%test_eq: int array] (kernel2 SparseGraphSeq.graph 2) [|3;0;-1;2;2|]
-
-let%test_unit "kernel2_2" = 
-    [%test_eq: int array] (kernel2 SparseGraphSeq.graph2 8) [|-1;8;1;1;1;6;8;1;-1|]
-
-
-*)
